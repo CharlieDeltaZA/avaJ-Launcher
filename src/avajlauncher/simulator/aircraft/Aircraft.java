@@ -8,7 +8,7 @@ public abstract class Aircraft {
     protected Coordinates coordinates;
     private static long idCounter;    
 
-    protected void Aircraft(String name, Coordinates coordinates) {
+    protected Aircraft(String name, Coordinates coordinates) {
         // ???? 
     } 
 
