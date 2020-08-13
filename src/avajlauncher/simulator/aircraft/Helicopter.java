@@ -1,5 +1,7 @@
 package simulator.aircraft;
 
+import simulator.WeatherTower;
+
 public class Helicopter implements Flyable {
 
     private WeatherTower weatherTower;

@@ -1,5 +1,7 @@
 package simulator.aircraft;
 
+import weather.Coordinates;
+
 public abstract class Aircraft {
     protected long id;
     protected String name;

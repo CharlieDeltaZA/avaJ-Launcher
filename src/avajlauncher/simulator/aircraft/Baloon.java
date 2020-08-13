@@ -1,6 +1,8 @@
 package simulator.aircraft;
 
-public class Baloon implements Flyable {
+import simulator.WeatherTower;
+
+public class Baloon implements Flyable
 
     private WeatherTower weatherTower;
     
