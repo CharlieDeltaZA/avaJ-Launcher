@@ -2,7 +2,7 @@ package simulator.aircraft;
 
 import simulator.WeatherTower;
 
-public class Helicopter implements Flyable {
+public class Helicopter extends Aircraft implements Flyable {
 
     private WeatherTower weatherTower;
 

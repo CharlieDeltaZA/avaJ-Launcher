@@ -2,17 +2,17 @@ package simulator.aircraft;
 
 import simulator.WeatherTower;
 
-public class Baloon implements Flyable {
+public class Balloon extends Aircraft implements Flyable {
 
     private WeatherTower weatherTower;
     
     @Override
     public void updateConditions() {
-        System.out.println("Baloon updateConditions");
+        System.out.println("Balloon updateConditions");
     }
 
     @Override
     public void registerTower(WeatherTower WeatherTower) {
-        System.out.println("Baloon registerTower");
+        System.out.println("Balloon registerTower");
     }
 }
