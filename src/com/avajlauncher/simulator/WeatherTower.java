@@ -1,6 +1,6 @@
-package simulator;
+package com.avajlauncher.simulator;
 
-import weather.Coordinates;
+import com.avajlauncher.weather.Coordinates;
 
 public class WeatherTower extends Tower {
     public String getWeatherConditions(Coordinates coordinates) {

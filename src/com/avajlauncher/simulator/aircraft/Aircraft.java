@@ -1,6 +1,6 @@
-package simulator.aircraft;
+package com.avajlauncher.simulator.aircraft;
 
-import weather.Coordinates;
+import com.avajlauncher.weather.Coordinates;
 
 public abstract class Aircraft {
     protected long id;

@@ -1,6 +1,6 @@
-package simulator.aircraft;
+package com.avajlauncher.simulator.aircraft;
 
-import simulator.WeatherTower;
+import com.avajlauncher.simulator.WeatherTower;
 
 public class Balloon extends Aircraft implements Flyable {
 

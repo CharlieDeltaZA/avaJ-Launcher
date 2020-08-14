@@ -1,4 +1,4 @@
-package weather;
+package com.avajlauncher.weather;
 
 public class Coordinates {
     private int longitude;
