@@ -24,6 +24,9 @@ public class Simulator {
 
                 // Line Format
                 // TYPE NAME LAT LONG HEIGHT
+                while ((line = reader.readLine()) != null) {
+                    System.out.println(line);
+                }
             }
             
         } catch (ArrayIndexOutOfBoundsException e) {
