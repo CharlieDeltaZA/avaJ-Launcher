@@ -9,7 +9,6 @@ public abstract class Aircraft {
     private static long idCounter = 0;    
 
     protected Aircraft(String name, Coordinates coordinates) {
-        // ???? 
         this.name = name;
         this.coordinates = coordinates;
         this.id = nextId();

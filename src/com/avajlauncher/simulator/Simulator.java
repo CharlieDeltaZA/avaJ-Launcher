@@ -4,8 +4,16 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.avajlauncher.simulator.aircraft.AircraftFactory;
+import com.avajlauncher.simulator.aircraft.Flyable;
 
 public class Simulator {
+
+    private static WeatherTower weatherTower;
+    private static List<Flyable> hangar = new ArrayList<>();
 
     public static void main(String[] args) {
         
@@ -25,9 +33,18 @@ public class Simulator {
                 // Line Format
                 // TYPE NAME LAT LONG HEIGHT
                 while ((line = reader.readLine()) != null) {
-                    System.out.println(line);
+                    System.out.println(line); // debug
+                    Flyable aircraft = AircraftFactory.newAircraft(line.split(" ")[0], line.split(" ")[1],
+                                    Integer.parseInt(line.split(" ")[2]),Integer.parseInt(line.split(" ")[3]), Integer.parseInt(line.split(" ")[4]));
+                    hangar.add(aircraft);
+                }
+
+                for (Flyable ac : hangar) {
+                    System.out.println(ac);
                 }
             }
+
+            reader.close();
             
         } catch (ArrayIndexOutOfBoundsException e) {
             System.out.println("Please specify a simulation file.");
