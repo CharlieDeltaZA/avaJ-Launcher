@@ -36,15 +36,21 @@ public class Simulator {
                 // TYPE NAME LAT LONG HEIGHT
                 while ((line = reader.readLine()) != null) {
                     System.out.println(line); // debug
-                    // TODO: Deal with unrecognized types - Custom Exceptions?
+                    // TODO: Deal with unrecognized types - Custom Exceptions, better protection of split inputs?
                     Flyable aircraft = AircraftFactory.newAircraft(line.split(" ")[0], line.split(" ")[1],
-                                    Integer.parseInt(line.split(" ")[2]),Integer.parseInt(line.split(" ")[3]), Integer.parseInt(line.split(" ")[4]));
+                                    Integer.parseInt(line.split(" ")[2]), Integer.parseInt(line.split(" ")[3]), Integer.parseInt(line.split(" ")[4]));
                     hangar.add(aircraft);
                 }
 
                 for (Flyable aircraft : hangar) {
-                    System.out.println(aircraft);
+                    // System.out.println(aircraft);
                     aircraft.registerTower(weatherTower);
+                }
+
+                // TODO: Remove below
+                for (Flyable aircraft : hangar) {
+                    // System.out.println(aircraft);
+                    aircraft.testing();
                 }
 
                 for (int i = 1; i <= simCount; i++) {
