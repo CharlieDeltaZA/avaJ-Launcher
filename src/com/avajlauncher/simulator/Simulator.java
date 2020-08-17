@@ -30,6 +30,8 @@ public class Simulator {
                     System.exit(1);
                 }
 
+                weatherTower = new WeatherTower();
+
                 // Line Format
                 // TYPE NAME LAT LONG HEIGHT
                 while ((line = reader.readLine()) != null) {
@@ -40,8 +42,13 @@ public class Simulator {
                     hangar.add(aircraft);
                 }
 
-                for (Flyable ac : hangar) {
-                    System.out.println(ac);
+                for (Flyable aircraft : hangar) {
+                    System.out.println(aircraft);
+                    aircraft.registerTower(weatherTower);
+                }
+
+                for (int i = 1; i <= simCount; i++) {
+                    weatherTower.changeWeather();
                 }
             }
 
