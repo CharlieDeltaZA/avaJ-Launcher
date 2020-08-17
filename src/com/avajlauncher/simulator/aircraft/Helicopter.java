@@ -11,14 +11,22 @@ public class Helicopter extends Aircraft implements Flyable {
         super(name, coordinates);
     }
 
+    /*  Helicopter Weather (Lat, Long, Height)
+    **  SUN  :                *,  +10,   +2
+    **  RAIN :                *,   +5,   *
+    **  FOG  :                *,   +1,   *
+    **  SNOW :                *,    *,   -12
+    */
+
     @Override
     public void updateConditions() {
         System.out.println("Helicopter updateConditions");
     }
 
     @Override
-    public void registerTower(WeatherTower WeatherTower) {
+    public void registerTower(WeatherTower weatherTower) {
         System.out.println("Helicopter registerTower");
+        this.weatherTower = weatherTower;
     }
     
 }

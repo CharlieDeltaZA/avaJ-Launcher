@@ -11,13 +11,21 @@ public class Balloon extends Aircraft implements Flyable {
         super(name, coordinates);
     }
     
+    /*  Balloon Weather (Lat, Long, Height)
+    **  SUN  :             *,   +2,    +4
+    **  RAIN :             *,    *,    -5
+    **  FOG  :             *,    *,    -3
+    **  SNOW :             *,    *,    -15
+    */
+
     @Override
     public void updateConditions() {
         System.out.println("Balloon updateConditions");
     }
 
     @Override
-    public void registerTower(WeatherTower WeatherTower) {
+    public void registerTower(WeatherTower weatherTower) {
         System.out.println("Balloon registerTower");
+        this.weatherTower = weatherTower;
     }
 }
