@@ -34,6 +34,7 @@ public class Simulator {
                 // TYPE NAME LAT LONG HEIGHT
                 while ((line = reader.readLine()) != null) {
                     System.out.println(line); // debug
+                    // TODO: Deal with unrecognized types - Custom Exceptions?
                     Flyable aircraft = AircraftFactory.newAircraft(line.split(" ")[0], line.split(" ")[1],
                                     Integer.parseInt(line.split(" ")[2]),Integer.parseInt(line.split(" ")[3]), Integer.parseInt(line.split(" ")[4]));
                     hangar.add(aircraft);
