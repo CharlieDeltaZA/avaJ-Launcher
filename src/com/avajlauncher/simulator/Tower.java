@@ -22,7 +22,10 @@ public abstract class Tower {
     }
 
     protected void conditionsChanged() {
-        
+        for (Flyable aircraft : observers) {
+            aircraft.updateConditions();
+        }
+        observers.removeAll(landed);
     }
     
 }
