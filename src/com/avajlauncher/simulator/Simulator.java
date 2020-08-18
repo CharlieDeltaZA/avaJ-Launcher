@@ -12,7 +12,7 @@ import com.avajlauncher.simulator.aircraft.Flyable;
 
 public class Simulator {
 
-    private static WeatherTower weatherTower;
+    private static WeatherTower weatherTower = new WeatherTower();
     private static List<Flyable> hangar = new ArrayList<>();
 
     public static void main(String[] args) {
@@ -30,7 +30,7 @@ public class Simulator {
                     System.exit(1);
                 }
 
-                weatherTower = new WeatherTower();
+                // weatherTower = new WeatherTower();
 
                 // Line Format
                 // TYPE NAME LAT LONG HEIGHT
@@ -48,10 +48,10 @@ public class Simulator {
                 }
 
                 // TODO: Remove below
-                for (Flyable aircraft : hangar) {
-                    // System.out.println(aircraft);
-                    aircraft.testing();
-                }
+                // for (Flyable aircraft : hangar) {
+                //     // System.out.println(aircraft);
+                //     aircraft.testing();
+                // }
 
                 for (int i = 1; i <= simCount; i++) {
                     weatherTower.changeWeather();

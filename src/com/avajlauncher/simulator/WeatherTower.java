@@ -7,10 +7,10 @@ public class WeatherTower extends Tower {
     public String getWeather(Coordinates coordinates) {
         // ????
         String wx = WeatherProvider.getProvider().getCurrentWeather(coordinates);
-        return wx;
+        return (wx);
     }
 
-    void changeWeather() {
+    public void changeWeather() {
         this.conditionsChanged();
     }
 }

@@ -20,8 +20,8 @@ public class JetPlane extends Aircraft implements Flyable {
 
     @Override
     public void updateConditions() {
-        System.out.println("JetPlane updateConditions");
-        String wx = weatherTower.getWeather(this.coordinates);
+        // System.out.println("JetPlane updateConditions");
+        String wx = this.weatherTower.getWeather(this.coordinates);
         String msg = "";
 
         switch (wx) {

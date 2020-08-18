@@ -20,8 +20,8 @@ public class Balloon extends Aircraft implements Flyable {
 
     @Override
     public void updateConditions() {
-        System.out.println("Balloon updateConditions");
-        String wx = weatherTower.getWeather(this.coordinates);
+        // System.out.println("Balloon updateConditions");
+        String wx = this.weatherTower.getWeather(this.coordinates);
         String msg = "";
 
         switch (wx) {
