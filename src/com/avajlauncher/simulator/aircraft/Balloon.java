@@ -21,6 +21,31 @@ public class Balloon extends Aircraft implements Flyable {
     @Override
     public void updateConditions() {
         System.out.println("Balloon updateConditions");
+        String wx = weatherTower.getWeather(this.coordinates);
+        String msg = "";
+
+        switch (wx) {
+            case "SUN":
+                this.coordinates = new Coordinates(coordinates.getLongitude() + 2, coordinates.getLatitude() + 0, coordinates.getHeight() + 4);
+                msg = "Pleasant day for some looning!";
+            case "RAIN":
+                this.coordinates = new Coordinates(coordinates.getLongitude() + 0, coordinates.getLatitude() + 0, coordinates.getHeight() - 5);
+                msg = "Are we getting heavier?";
+            case "FOG":
+                this.coordinates = new Coordinates(coordinates.getLongitude() + 0, coordinates.getLatitude() + 0, coordinates.getHeight() - 3);
+                msg = "Which direction is the ground?";
+            case "SNOW":
+                this.coordinates = new Coordinates(coordinates.getLongitude() + 0, coordinates.getLatitude() + 0, coordinates.getHeight() - 15);
+                msg = "It's cold, turn up the burner.";
+        }
+
+        if (this.coordinates.getHeight() <= 0) {
+            System.out.println(this.getClass().getSimpleName() + "#" + this.name + "(" + this.id +"): Landing. Lat: " + coordinates.getLatitude() + " Long: " + coordinates.getLongitude() + " Height: " + coordinates.getHeight());
+            System.out.println("Tower says: " + this.getClass().getSimpleName() + "#" + this.name + "(" + this.id +") unregistered from weather tower." );
+            this.weatherTower.unregister(this);
+        } else {
+            System.out.println(this.getClass().getSimpleName() + "#" + this.name + "(" + this.id +"): " + msg);
+        }
     }
 
     @Override

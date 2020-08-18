@@ -21,6 +21,31 @@ public class Helicopter extends Aircraft implements Flyable {
     @Override
     public void updateConditions() {
         System.out.println("Helicopter updateConditions");
+        String wx = weatherTower.getWeather(this.coordinates);
+        String msg = "";
+
+        switch (wx) {
+            case "SUN":
+                this.coordinates = new Coordinates(coordinates.getLongitude() + 10, coordinates.getLatitude() + 0, coordinates.getHeight() + 2);
+                msg = "Lets go find some points of interest!";
+            case "RAIN":
+                this.coordinates = new Coordinates(coordinates.getLongitude() + 5, coordinates.getLatitude() + 0, coordinates.getHeight() + 0);
+                msg = "Is there a leak back there?";
+            case "FOG":
+                this.coordinates = new Coordinates(coordinates.getLongitude() + 1, coordinates.getLatitude() + 0, coordinates.getHeight() + 0);
+                msg = "Where did that mountain go?";
+            case "SNOW":
+                this.coordinates = new Coordinates(coordinates.getLongitude() + 0, coordinates.getLatitude() + 0, coordinates.getHeight() - 12);
+                msg = "Hopefully the spinny bits don't freeze.";
+        }
+
+        if (this.coordinates.getHeight() <= 0) {
+            System.out.println(this.getClass().getSimpleName() + "#" + this.name + "(" + this.id +"): Landing. Lat: " + coordinates.getLatitude() + " Long: " + coordinates.getLongitude() + " Height: " + coordinates.getHeight());
+            System.out.println("Tower says: " + this.getClass().getSimpleName() + "#" + this.name + "(" + this.id +") unregistered from weather tower." );
+            this.weatherTower.unregister(this);
+        } else {
+            System.out.println(this.getClass().getSimpleName() + "#" + this.name + "(" + this.id +"): " + msg);
+        }
     }
 
     @Override
