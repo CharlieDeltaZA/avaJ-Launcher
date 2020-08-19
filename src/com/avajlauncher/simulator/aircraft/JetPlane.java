@@ -40,6 +40,7 @@ public class JetPlane extends Aircraft implements Flyable {
         }
 
         if (this.coordinates.getHeight() <= 0) {
+            System.out.println(this.getClass().getSimpleName() + "#" + this.name + "(" + this.id +"): " + msg);
             System.out.println(this.getClass().getSimpleName() + "#" + this.name + "(" + this.id +"): Landing. Lat: " + coordinates.getLatitude() + " Long: " + coordinates.getLongitude() + " Height: " + coordinates.getHeight());
             System.out.println("Tower says: " + this.getClass().getSimpleName() + "#" + this.name + "(" + this.id +") unregistered from weather tower." );
             this.weatherTower.unregister(this);
