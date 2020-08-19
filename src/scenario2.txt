@@ -1,0 +1,10 @@
+100
+Balloon B1 55 39 50
+Balloon B2 88 29 20
+JetPlane J1 99 5 35
+Helicopter H1 123 45 20
+Helicopter H2 29 38 47
+Helicopter H3 3 6 9
+Balloon B3 42 6 21
+JetPlane J2 123 321 70
+JetPlane J3 23 87 111
