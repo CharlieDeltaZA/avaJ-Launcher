@@ -26,17 +26,29 @@ public class JetPlane extends Aircraft implements Flyable {
 
         switch (wx) {
             case "SUN":
+                System.out.println("Old Coords: " + coordinates.getLatitude() + " " + coordinates.getLongitude() + " " + coordinates.getHeight());
                 this.coordinates = new Coordinates(coordinates.getLongitude() + 0, coordinates.getLatitude() + 10, coordinates.getHeight() + 2);
+                System.out.println("New Coords: " + coordinates.getLatitude() + " " + coordinates.getLongitude() + " " + coordinates.getHeight());
                 msg = "What a wonderful day!";
+                break;
             case "RAIN":
+                System.out.println("Old Coords: " + coordinates.getLatitude() + " " + coordinates.getLongitude() + " " + coordinates.getHeight());
                 this.coordinates = new Coordinates(coordinates.getLongitude() + 0, coordinates.getLatitude() + 7, coordinates.getHeight() + 0);
+                System.out.println("New Coords: " + coordinates.getLatitude() + " " + coordinates.getLongitude() + " " + coordinates.getHeight());
                 msg = "Wonder if we'll be hit by lightning?";
+                break;
             case "FOG":
+                System.out.println("Old Coords: " + coordinates.getLatitude() + " " + coordinates.getLongitude() + " " + coordinates.getHeight());
                 this.coordinates = new Coordinates(coordinates.getLongitude() + 0, coordinates.getLatitude() + 1, coordinates.getHeight() + 0);
+                System.out.println("New Coords: " + coordinates.getLatitude() + " " + coordinates.getLongitude() + " " + coordinates.getHeight());
                 msg = "Why is there a mountain goat in front of us?";
+                break;
             case "SNOW":
+                System.out.println("Old Coords: " + coordinates.getLatitude() + " " + coordinates.getLongitude() + " " + coordinates.getHeight());
                 this.coordinates = new Coordinates(coordinates.getLongitude() + 0, coordinates.getLatitude() + 0, coordinates.getHeight() - 7);
+                System.out.println("New Coords: " + coordinates.getLatitude() + " " + coordinates.getLongitude() + " " + coordinates.getHeight());
                 msg = "Time to turn on the pitot heat.";
+                break;
         }
 
         if (this.coordinates.getHeight() <= 0) {

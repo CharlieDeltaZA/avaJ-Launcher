@@ -46,6 +46,7 @@ public class Simulator {
                     // System.out.println(aircraft);
                     aircraft.registerTower(weatherTower);
                 }
+                // OI BRUH - Handle NEGATIVE COORDS PROPERLY. ADD MORE EXCEPTIONS. REMEMBER JADON's MISTAKE :)
 
                 // TODO: Remove below
                 // for (Flyable aircraft : hangar) {
@@ -54,6 +55,7 @@ public class Simulator {
                 // }
 
                 for (int i = 1; i <= simCount; i++) {
+                    System.out.println("Changing wx: " + i);
                     weatherTower.changeWeather();
                 }
             }
