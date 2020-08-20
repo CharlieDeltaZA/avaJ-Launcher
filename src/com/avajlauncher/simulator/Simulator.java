@@ -14,6 +14,7 @@ public class Simulator {
 
     private static WeatherTower weatherTower = new WeatherTower();
     private static List<Flyable> hangar = new ArrayList<>();
+    private static Logger logger = Logger.getLogger();
 
     public static void main(String[] args) {
         
@@ -22,7 +23,7 @@ public class Simulator {
             BufferedReader reader = new BufferedReader(new FileReader(filename));
             String line = reader.readLine();
             if (line != null) {
-                System.out.println("Line one: " + line); // Debug
+                // System.out.println("Line one: " + line); // Debug
                 int simCount = Integer.parseInt(line); // line.split(" ")[0] ??
                 // TODO: Handle first line being NOT numbers
                 if (simCount <= 0) {
@@ -30,12 +31,10 @@ public class Simulator {
                     System.exit(1);
                 }
 
-                // weatherTower = new WeatherTower();
-
                 // Line Format
                 // TYPE NAME LAT LONG HEIGHT
                 while ((line = reader.readLine()) != null) {
-                    System.out.println(line); // debug
+                    // System.out.println(line); // debug
                     // TODO: Deal with unrecognized types - Custom Exceptions, better protection of split inputs?
                     Flyable aircraft = AircraftFactory.newAircraft(line.split(" ")[0], line.split(" ")[1],
                                     Integer.parseInt(line.split(" ")[2]), Integer.parseInt(line.split(" ")[3]), Integer.parseInt(line.split(" ")[4]));
@@ -49,9 +48,11 @@ public class Simulator {
                 // OI BRUH - Handle NEGATIVE COORDS PROPERLY. ADD MORE EXCEPTIONS. REMEMBER JADON's MISTAKE :)
 
                 for (int i = 1; i <= simCount; i++) {
-                    System.out.println("Changing wx: " + i);
+                    // System.out.println("Changing wx: " + i);
                     weatherTower.changeWeather();
                 }
+
+                logger.saveFile();
             }
 
             reader.close();

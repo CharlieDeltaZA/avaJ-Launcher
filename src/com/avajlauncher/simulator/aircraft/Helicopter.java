@@ -1,10 +1,12 @@
 package com.avajlauncher.simulator.aircraft;
 
+import com.avajlauncher.simulator.Logger;
 import com.avajlauncher.simulator.WeatherTower;
 import com.avajlauncher.weather.Coordinates;
 
 public class Helicopter extends Aircraft implements Flyable {
 
+    private Logger logger = Logger.getLogger();
     private WeatherTower weatherTower;
 
     Helicopter(String name, Coordinates coordinates) {
@@ -26,45 +28,51 @@ public class Helicopter extends Aircraft implements Flyable {
 
         switch (wx) {
             case "SUN":
-                System.out.println("Old Coords: " + coordinates.getLatitude() + " " + coordinates.getLongitude() + " " + coordinates.getHeight());
+                // System.out.println("Old Coords: " + coordinates.getLatitude() + " " + coordinates.getLongitude() + " " + coordinates.getHeight());
                 this.coordinates = new Coordinates(coordinates.getLongitude() + 10, coordinates.getLatitude() + 0, coordinates.getHeight() + 2);
-                System.out.println("New Coords: " + coordinates.getLatitude() + " " + coordinates.getLongitude() + " " + coordinates.getHeight());
+                // System.out.println("New Coords: " + coordinates.getLatitude() + " " + coordinates.getLongitude() + " " + coordinates.getHeight());
                 msg = "Lets go find some points of interest!";
                 break;
             case "RAIN":
-                System.out.println("Old Coords: " + coordinates.getLatitude() + " " + coordinates.getLongitude() + " " + coordinates.getHeight());
+                // System.out.println("Old Coords: " + coordinates.getLatitude() + " " + coordinates.getLongitude() + " " + coordinates.getHeight());
                 this.coordinates = new Coordinates(coordinates.getLongitude() + 5, coordinates.getLatitude() + 0, coordinates.getHeight() + 0);
-                System.out.println("New Coords: " + coordinates.getLatitude() + " " + coordinates.getLongitude() + " " + coordinates.getHeight());
+                // System.out.println("New Coords: " + coordinates.getLatitude() + " " + coordinates.getLongitude() + " " + coordinates.getHeight());
                 msg = "Is there a leak back there?";
                 break;
             case "FOG":
-                System.out.println("Old Coords: " + coordinates.getLatitude() + " " + coordinates.getLongitude() + " " + coordinates.getHeight());
+                // System.out.println("Old Coords: " + coordinates.getLatitude() + " " + coordinates.getLongitude() + " " + coordinates.getHeight());
                 this.coordinates = new Coordinates(coordinates.getLongitude() + 1, coordinates.getLatitude() + 0, coordinates.getHeight() + 0);
-                System.out.println("New Coords: " + coordinates.getLatitude() + " " + coordinates.getLongitude() + " " + coordinates.getHeight());
+                // System.out.println("New Coords: " + coordinates.getLatitude() + " " + coordinates.getLongitude() + " " + coordinates.getHeight());
                 msg = "Where did that mountain go?";
                 break;
             case "SNOW":
-                System.out.println("Old Coords: " + coordinates.getLatitude() + " " + coordinates.getLongitude() + " " + coordinates.getHeight());
+                // System.out.println("Old Coords: " + coordinates.getLatitude() + " " + coordinates.getLongitude() + " " + coordinates.getHeight());
                 this.coordinates = new Coordinates(coordinates.getLongitude() + 0, coordinates.getLatitude() + 0, coordinates.getHeight() - 12);
-                System.out.println("New Coords: " + coordinates.getLatitude() + " " + coordinates.getLongitude() + " " + coordinates.getHeight());
+                // System.out.println("New Coords: " + coordinates.getLatitude() + " " + coordinates.getLongitude() + " " + coordinates.getHeight());
                 msg = "Hopefully the spinny bits don't freeze.";
                 break;
         }
 
+        logger.addLine(this.getClass().getSimpleName() + "#" + this.name + "(" + this.id +"): " + msg + "\n");
+        // System.out.println(this.getClass().getSimpleName() + "#" + this.name + "(" + this.id +"): " + msg);
+        
         if (this.coordinates.getHeight() <= 0) {
-            System.out.println(this.getClass().getSimpleName() + "#" + this.name + "(" + this.id +"): " + msg);
-            System.out.println(this.getClass().getSimpleName() + "#" + this.name + "(" + this.id +"): Landing. Lat: " + coordinates.getLatitude() + " Long: " + coordinates.getLongitude() + " Height: " + coordinates.getHeight());
-            System.out.println("Tower says: " + this.getClass().getSimpleName() + "#" + this.name + "(" + this.id +") unregistered from weather tower." );
+            // System.out.println(this.getClass().getSimpleName() + "#" + this.name + "(" + this.id +"): " + msg);
+            logger.addLine(this.getClass().getSimpleName() + "#" + this.name + "(" + this.id +"): Landing... (Lat: " + coordinates.getLatitude() + ", Long: " + coordinates.getLongitude() + ", Height: " + coordinates.getHeight() + ")\n");
+            // System.out.println(this.getClass().getSimpleName() + "#" + this.name + "(" + this.id +"): Landing... Lat: " + coordinates.getLatitude() + " Long: " + coordinates.getLongitude() + " Height: " + coordinates.getHeight());
+            logger.addLine("Tower says: " + this.getClass().getSimpleName() + "#" + this.name + "(" + this.id +") unregistered from weather tower.\n");
+            // System.out.println("Tower says: " + this.getClass().getSimpleName() + "#" + this.name + "(" + this.id +") unregistered from weather tower." );
             this.weatherTower.unregister(this);
-        } else {
-            System.out.println(this.getClass().getSimpleName() + "#" + this.name + "(" + this.id +"): " + msg);
-        }
+        } 
+        // else {
+        // }
     }
 
     @Override
     public void registerTower(WeatherTower weatherTower) {
         this.weatherTower = weatherTower;
         this.weatherTower.register(this);
-        System.out.println("Tower says: " + this.getClass().getSimpleName() + "#" + this.name + "(" + this.id +") registered to weather tower." );
+        logger.addLine("Tower says: " + this.getClass().getSimpleName() + "#" + this.name + "(" + this.id +") registered to weather tower.\n");
+        // System.out.println("Tower says: " + this.getClass().getSimpleName() + "#" + this.name + "(" + this.id +") registered to weather tower.");
     }
 }
