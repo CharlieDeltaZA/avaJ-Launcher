@@ -22,19 +22,19 @@ public class WeatherProvider {
         
         int index = 0;
         int now = (int) new Date().getTime();
-        System.out.println("now: " +now);
+        // System.out.println("now: " +now);
         int seed = new Random(now).nextInt();
-        System.out.println("initial seed: " +seed);
-        System.out.println(longitude*seed);
+        // System.out.println("initial seed: " +seed);
+        // System.out.println(longitude*seed);
         seed = new Random(longitude * seed).nextInt();
-        System.out.println("seed+long: " +seed);
-        seed = new Random(seed + latitude).nextInt();
-        System.out.println("seed+lat: " +seed);
+        // System.out.println("seed+long: " +seed);
+        seed = new Random(seed / latitude).nextInt();
+        // System.out.println("seed+lat: " +seed);
         seed = new Random(height - seed).nextInt();
-        System.out.println("seed-height: " +seed);
+        // System.out.println("seed-height: " +seed);
         index = new Random(seed).nextInt(4);
-        System.out.println("seed .nextInt(4): " +seed);
-        System.out.println("index: " +index);
+        // System.out.println("seed .nextInt(4): " +seed);
+        // System.out.println("index: " +index);
         return weather[index];
     }
 }
