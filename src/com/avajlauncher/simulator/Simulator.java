@@ -28,13 +28,12 @@ public class Simulator {
                 try {
                     simCount = Integer.parseInt(line);
 
-                    // TODO: Handle first line being NOT numbers
                     if (simCount <= 0) {
-                        System.out.println("Invalid simulation count. Must be > 0.");
+                        System.out.println("Invalid simulation count. Must be greater than 0.");
                         System.exit(1);
                     }
                 } catch (NumberFormatException e) {
-                    System.out.println("First line must be a positive integer.");
+                    System.out.println("First line must be a positive number.");
                     System.exit(1);
                 }
 
@@ -42,7 +41,6 @@ public class Simulator {
                 // TYPE NAME LONG LAT HEIGHT <- Lat & Long should realistically be switched but w/e
                 while ((line = reader.readLine()) != null) {
                     String[] splitLine = line.split(" ");
-                    // TODO: Deal with unrecognized types - Custom Exceptions, better protection of split inputs?
 
                     if (splitLine.length != 5) {
                         System.out.println("Missing parameter: Please ensure Type, Name, Long, Lat & Height are present.");
