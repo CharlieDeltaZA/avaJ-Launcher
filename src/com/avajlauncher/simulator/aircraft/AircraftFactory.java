@@ -7,13 +7,13 @@ public abstract class AircraftFactory {
 
         // Coordinates are positive numbers
         if (longitude <= 0 || latitude <= 0 || height <= 0) {
-            System.out.println("Coordinates must be positive numbers.");
+            System.out.println(String.format("%s#%s - Coordinates must be positive numbers.", type, name));
             System.exit(1);
         }
 
         // Height is in the 0-100 range
         if (height > 100) {
-            System.out.println("Height must be between 0 and 100.");
+            System.out.println(String.format("%s#%s - Height must be between 0 and 100.", type, name));
             System.exit(1);
         }
 
