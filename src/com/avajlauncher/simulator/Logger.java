@@ -16,9 +16,8 @@ public class Logger {
         return logger;
     }
 
-    // File file
-    public void addLine(String msg) {
-        content = content + msg;
+    public void addLine(String line) {
+        content = content + line;
     }
     
     public void saveFile() {
@@ -27,8 +26,9 @@ public class Logger {
             writer.write(content);
             writer.close();
         } catch (IOException e) {
-            //TODO: handle exception
+            System.out.println("Error creating file simulation.txt, quitting...");
             System.out.println(e);
+            System.exit(1);
         }
         
     }
