@@ -22,40 +22,60 @@ public class Simulator {
             String filename = args[0];
             BufferedReader reader = new BufferedReader(new FileReader(filename));
             String line = reader.readLine();
+            int simCount = -1;
+
             if (line != null) {
-                // System.out.println("Line one: " + line); // Debug
-                int simCount = Integer.parseInt(line); // line.split(" ")[0] ??
-                // TODO: Handle first line being NOT numbers
-                if (simCount <= 0) {
-                    System.out.println("Invalid simulation count. Must be > 0.");
+                try {
+                    simCount = Integer.parseInt(line);
+
+                    // TODO: Handle first line being NOT numbers
+                    if (simCount <= 0) {
+                        System.out.println("Invalid simulation count. Must be > 0.");
+                        System.exit(1);
+                    }
+                } catch (NumberFormatException e) {
+                    System.out.println("First line must be a positive integer.");
                     System.exit(1);
                 }
 
                 // Line Format
-                // TYPE NAME LAT LONG HEIGHT
+                // TYPE NAME LONG LAT HEIGHT <- Lat & Long should realistically be switched but w/e
                 while ((line = reader.readLine()) != null) {
-                    // System.out.println(line); // debug
+                    String[] splitLine = line.split(" ");
                     // TODO: Deal with unrecognized types - Custom Exceptions, better protection of split inputs?
-                    Flyable aircraft = AircraftFactory.newAircraft(line.split(" ")[0], line.split(" ")[1],
-                                    Integer.parseInt(line.split(" ")[2]), Integer.parseInt(line.split(" ")[3]), Integer.parseInt(line.split(" ")[4]));
-                    hangar.add(aircraft);
+
+                    if (splitLine.length != 5) {
+                        System.out.println("Missing parameter: Please ensure Type, Name, Long, Lat & Height are present.");
+                        System.exit(1);
+                    }
+
+                    try {
+                        Flyable aircraft = AircraftFactory.newAircraft(splitLine[0], splitLine[1],
+                                        Integer.parseInt(splitLine[2]), Integer.parseInt(splitLine[3]), Integer.parseInt(splitLine[4]));
+                        
+                        hangar.add(aircraft);
+
+                    } catch (NumberFormatException e) {
+                        System.out.println("Please ensure all coordinates are numerical.");
+                        System.exit(1);
+                    }
+
                 }
 
+                // Finished with the reader, close it.
+                reader.close();
+                
                 for (Flyable aircraft : hangar) {
-                    // System.out.println(aircraft);
                     aircraft.registerTower(weatherTower);
                 }
-                // OI BRUH - Handle NEGATIVE COORDS PROPERLY. ADD MORE EXCEPTIONS. REMEMBER JADON's MISTAKE :)
 
                 for (int i = 1; i <= simCount; i++) {
-                    // System.out.println("Changing wx: " + i);
                     weatherTower.changeWeather();
                 }
 
+                // Log output to the file.
                 logger.saveFile();
             }
-
-            reader.close();
             
         } catch (ArrayIndexOutOfBoundsException e) {
             System.out.println("Please specify a simulation file.");
