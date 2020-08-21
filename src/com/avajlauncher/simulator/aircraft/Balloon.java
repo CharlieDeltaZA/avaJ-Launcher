@@ -58,7 +58,7 @@ public class Balloon extends Aircraft implements Flyable {
         
         if (this.coordinates.getHeight() <= 0) {
             // System.out.println(this.getClass().getSimpleName() + "#" + this.name + "(" + this.id +"): " + msg);
-            logger.addLine(this.getClass().getSimpleName() + "#" + this.name + "(" + this.id +"): Landing... (Lat: " + coordinates.getLatitude() + ", Long: " + coordinates.getLongitude() + ", Height: " + coordinates.getHeight() + ")\n");
+            logger.addLine(this.getClass().getSimpleName() + "#" + this.name + "(" + this.id + "): Landing... (" + coordinates.toString() + ")\n");
             // System.out.println(this.getClass().getSimpleName() + "#" + this.name + "(" + this.id +"): Landing... Lat: " + coordinates.getLatitude() + " Long: " + coordinates.getLongitude() + " Height: " + coordinates.getHeight());
             logger.addLine("Tower says: " + this.getClass().getSimpleName() + "#" + this.name + "(" + this.id +") unregistered from weather tower.\n");
             // System.out.println("Tower says: " + this.getClass().getSimpleName() + "#" + this.name + "(" + this.id +") unregistered from weather tower." );
