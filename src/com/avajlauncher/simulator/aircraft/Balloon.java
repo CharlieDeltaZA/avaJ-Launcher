@@ -25,22 +25,26 @@ public class Balloon extends Aircraft implements Flyable {
     public void updateConditions() {
         String wx = this.weatherTower.getWeather(this.coordinates);
         String msg = "";
+        int height = coordinates.getHeight();
 
         switch (wx) {
             case "SUN":
-                this.coordinates = new Coordinates(coordinates.getLatitude() + 0, coordinates.getLongitude() + 2, coordinates.getHeight() + 4);
+                if ((height + 4) > 100) {
+                    height = 100;
+                }
+                this.coordinates = new Coordinates(coordinates.getLatitude() + 0, coordinates.getLongitude() + 2, height + 4);
                 msg = "Pleasant day for some looning!";
                 break;
             case "RAIN":
-                this.coordinates = new Coordinates(coordinates.getLatitude() + 0, coordinates.getLongitude() + 0, coordinates.getHeight() - 5);
+                this.coordinates = new Coordinates(coordinates.getLatitude() + 0, coordinates.getLongitude() + 0, height - 5);
                 msg = "Are we getting heavier?";
                 break;
             case "FOG":
-                this.coordinates = new Coordinates(coordinates.getLatitude() + 0, coordinates.getLongitude() + 0, coordinates.getHeight() - 3);
+                this.coordinates = new Coordinates(coordinates.getLatitude() + 0, coordinates.getLongitude() + 0, height - 3);
                 msg = "Which direction is the ground?";
                 break;
             case "SNOW":
-                this.coordinates = new Coordinates(coordinates.getLatitude() + 0, coordinates.getLongitude() + 0, coordinates.getHeight() - 15);
+                this.coordinates = new Coordinates(coordinates.getLatitude() + 0, coordinates.getLongitude() + 0, height - 15);
                 msg = "It's cold, turn up the burner.";
                 break;
         }

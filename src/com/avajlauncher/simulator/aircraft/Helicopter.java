@@ -25,22 +25,26 @@ public class Helicopter extends Aircraft implements Flyable {
     public void updateConditions() {
         String wx = this.weatherTower.getWeather(this.coordinates);
         String msg = "";
+        int height = coordinates.getHeight();
 
         switch (wx) {
             case "SUN":
-                this.coordinates = new Coordinates(coordinates.getLatitude() + 0, coordinates.getLongitude() + 10, coordinates.getHeight() + 2);
+                if ((height + 2) > 100) {
+                    height = 100;
+                }
+                this.coordinates = new Coordinates(coordinates.getLatitude() + 0, coordinates.getLongitude() + 10, height + 2);
                 msg = "Lets go find some points of interest!";
                 break;
             case "RAIN":
-                this.coordinates = new Coordinates(coordinates.getLatitude() + 0, coordinates.getLongitude() + 5, coordinates.getHeight() + 0);
+                this.coordinates = new Coordinates(coordinates.getLatitude() + 0, coordinates.getLongitude() + 5, height + 0);
                 msg = "Is there a leak back there?";
                 break;
             case "FOG":
-                this.coordinates = new Coordinates(coordinates.getLatitude() + 0, coordinates.getLongitude() + 1, coordinates.getHeight() + 0);
+                this.coordinates = new Coordinates(coordinates.getLatitude() + 0, coordinates.getLongitude() + 1, height + 0);
                 msg = "Where did that mountain go?";
                 break;
             case "SNOW":
-                this.coordinates = new Coordinates(coordinates.getLatitude() + 0, coordinates.getLongitude() + 0, coordinates.getHeight() - 12);
+                this.coordinates = new Coordinates(coordinates.getLatitude() + 0, coordinates.getLongitude() + 0, height - 12);
                 msg = "Hopefully the spinny bits don't freeze.";
                 break;
         }
