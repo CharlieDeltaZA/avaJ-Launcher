@@ -22,33 +22,24 @@ public class Balloon extends Aircraft implements Flyable {
 
     @Override
     public void updateConditions() {
-        // System.out.println("Balloon updateConditions");
         String wx = this.weatherTower.getWeather(this.coordinates);
         String msg = "";
 
         switch (wx) {
             case "SUN":
-                // System.out.println("Old Coords: " + coordinates.getLatitude() + " " + coordinates.getLongitude() + " " + coordinates.getHeight());
-                this.coordinates = new Coordinates(coordinates.getLongitude() + 2, coordinates.getLatitude() + 0, coordinates.getHeight() + 4);
-                // System.out.println("New Coords: " + coordinates.getLatitude() + " " + coordinates.getLongitude() + " " + coordinates.getHeight());
+                this.coordinates = new Coordinates(coordinates.getLatitude() + 0, coordinates.getLongitude() + 2, coordinates.getHeight() + 4);
                 msg = "Pleasant day for some looning!";
                 break;
             case "RAIN":
-                // System.out.println("Old Coords: " + coordinates.getLatitude() + " " + coordinates.getLongitude() + " " + coordinates.getHeight());
-                this.coordinates = new Coordinates(coordinates.getLongitude() + 0, coordinates.getLatitude() + 0, coordinates.getHeight() - 5);
-                // System.out.println("New Coords: " + coordinates.getLatitude() + " " + coordinates.getLongitude() + " " + coordinates.getHeight());
+                this.coordinates = new Coordinates(coordinates.getLatitude() + 0, coordinates.getLongitude() + 0, coordinates.getHeight() - 5);
                 msg = "Are we getting heavier?";
                 break;
             case "FOG":
-                // System.out.println("Old Coords: " + coordinates.getLatitude() + " " + coordinates.getLongitude() + " " + coordinates.getHeight());
-                this.coordinates = new Coordinates(coordinates.getLongitude() + 0, coordinates.getLatitude() + 0, coordinates.getHeight() - 3);
-                // System.out.println("New Coords: " + coordinates.getLatitude() + " " + coordinates.getLongitude() + " " + coordinates.getHeight());
+                this.coordinates = new Coordinates(coordinates.getLatitude() + 0, coordinates.getLongitude() + 0, coordinates.getHeight() - 3);
                 msg = "Which direction is the ground?";
                 break;
             case "SNOW":
-                // System.out.println("Old Coords: " + coordinates.getLatitude() + " " + coordinates.getLongitude() + " " + coordinates.getHeight());
-                this.coordinates = new Coordinates(coordinates.getLongitude() + 0, coordinates.getLatitude() + 0, coordinates.getHeight() - 15);
-                // System.out.println("New Coords: " + coordinates.getLatitude() + " " + coordinates.getLongitude() + " " + coordinates.getHeight());
+                this.coordinates = new Coordinates(coordinates.getLatitude() + 0, coordinates.getLongitude() + 0, coordinates.getHeight() - 15);
                 msg = "It's cold, turn up the burner.";
                 break;
         }
@@ -64,8 +55,6 @@ public class Balloon extends Aircraft implements Flyable {
             // System.out.println("Tower says: " + this.getClass().getSimpleName() + "#" + this.name + "(" + this.id +") unregistered from weather tower." );
             this.weatherTower.unregister(this);
         } 
-        // else {
-        // }
     }
 
     @Override
