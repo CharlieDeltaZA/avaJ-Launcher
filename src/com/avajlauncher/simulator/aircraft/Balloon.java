@@ -8,6 +8,7 @@ public class Balloon extends Aircraft implements Flyable {
 
     private WeatherTower weatherTower;
     private Logger logger = Logger.getLogger();
+    private String classSimpleName = this.getClass().getSimpleName();
 
     Balloon(String name, Coordinates coordinates) {
         super(name, coordinates);
@@ -44,15 +45,15 @@ public class Balloon extends Aircraft implements Flyable {
                 break;
         }
         
-        logger.addLine(this.getClass().getSimpleName() + "#" + this.name + "(" + this.id +"): " + msg + "\n");
-        // System.out.println(this.getClass().getSimpleName() + "#" + this.name + "(" + this.id +"): " + msg);
+        logger.addLine(String.format("%s#%s(%s): %s\n", classSimpleName, this.name, this.id, msg));
+        // System.out.println(classSimpleName + "#" + this.name + "(" + this.id + "): " + msg);
         
         if (this.coordinates.getHeight() <= 0) {
-            // System.out.println(this.getClass().getSimpleName() + "#" + this.name + "(" + this.id +"): " + msg);
-            logger.addLine(this.getClass().getSimpleName() + "#" + this.name + "(" + this.id + "): Landing... (" + coordinates.toString() + ")\n");
-            // System.out.println(this.getClass().getSimpleName() + "#" + this.name + "(" + this.id +"): Landing... Lat: " + coordinates.getLatitude() + " Long: " + coordinates.getLongitude() + " Height: " + coordinates.getHeight());
-            logger.addLine("Tower says: " + this.getClass().getSimpleName() + "#" + this.name + "(" + this.id +") unregistered from weather tower.\n");
-            // System.out.println("Tower says: " + this.getClass().getSimpleName() + "#" + this.name + "(" + this.id +") unregistered from weather tower." );
+            // System.out.println(classSimpleName + "#" + this.name + "(" + this.id +"): " + msg);
+            // System.out.println(classSimpleName + "#" + this.name + "(" + this.id +"): Landing... Lat: " + coordinates.getLatitude() + " Long: " + coordinates.getLongitude() + " Height: " + coordinates.getHeight());
+            // System.out.println("Tower says: " + classSimpleName + "#" + this.name + "(" + this.id +") unregistered from weather tower." );
+            logger.addLine(String.format("%s#%s(%s): Landing... (%s)\n", classSimpleName, this.name, this.id, coordinates.toString()));
+            logger.addLine(String.format("Tower says: %s#%s(%s) unregistered from weather tower.\n", classSimpleName, this.name, this.id));
             this.weatherTower.unregister(this);
         } 
     }
@@ -61,7 +62,7 @@ public class Balloon extends Aircraft implements Flyable {
     public void registerTower(WeatherTower weatherTower) {
         this.weatherTower = weatherTower;
         this.weatherTower.register(this);
-        logger.addLine("Tower says: " + this.getClass().getSimpleName() + "#" + this.name + "(" + this.id +") registered to weather tower.\n");
-        // System.out.println("Tower says: " + this.getClass().getSimpleName() + "#" + this.name + "(" + this.id +") registered to weather tower.");
+        logger.addLine(String.format("Tower says: %s#%s(%s) registered to weather tower.\n", classSimpleName, this.name, this.id));
+        // System.out.println("Tower says: " + classSimpleName + "#" + this.name + "(" + this.id +") registered to weather tower.");
     }
 }
