@@ -15,11 +15,11 @@ public abstract class AircraftFactory {
             case "Balloon":
                 return (new Balloon(name, coords));
             default:
-                System.out.println("Aircraft type '" + type + "' not recognized. Returning Null...");
-                return null;
-                // System.out.println("Aircraft type '" + type + "' not recognized. Aborting...");
-                // System.exit(1);
+                System.out.println(String.format("Aircraft type '%s' not recognized. Aborting takeoff...", type));
+                System.exit(1);
         }
+
+        return (null);
     }
     
 }
