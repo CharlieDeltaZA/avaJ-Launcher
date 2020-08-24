@@ -9,6 +9,7 @@ TBC/25
 
 #### Project Overview:
 1st Java project @ WeThinkCode_
+
 Summary: Implement a minimal aircraft simulation program based on a given UML class diagram.
 
 ### Installing & Running:
