@@ -43,7 +43,8 @@ public class Simulator {
                     String[] splitLine = line.split(" ");
 
                     if (splitLine.length != 5) {
-                        System.out.println("Missing parameter: Please ensure Type, Name, Long, Lat & Height are present.");
+                        System.out.println("Missing parameter: Please ensure Type, Name, Long, Lat & Height are present in the following line:");
+                        System.out.println(line);
                         System.exit(1);
                     }
 
@@ -54,7 +55,8 @@ public class Simulator {
                         hangar.add(aircraft);
 
                     } catch (NumberFormatException e) {
-                        System.out.println("Please ensure all coordinates are numerical.");
+                        System.out.println("Please ensure all coordinates are numerical in the following line:");
+                        System.out.println(line);
                         System.exit(1);
                     }
 
@@ -76,11 +78,11 @@ public class Simulator {
             }
             
         } catch (ArrayIndexOutOfBoundsException e) {
-            System.out.println("Please specify a simulation file.");
+            System.out.println("Please specify a scenario file.");
         } catch (FileNotFoundException e) {
-            System.out.println("Could not find simulation file '" + args[0] + "'");
+            System.out.println(String.format("Could not find scenario file '%s'", args[0]));
         } catch (IOException e) {
-            System.out.println("Error while reading file '" + args[0] + "'");
+            System.out.println(String.format("Error while reading file '%s'", args[0]));
         }
     }
     
