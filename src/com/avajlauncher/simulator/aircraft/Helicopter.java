@@ -31,8 +31,10 @@ public class Helicopter extends Aircraft implements Flyable {
             case "SUN":
                 if ((height + 2) > 100) {
                     height = 100;
+                } else {
+                    height += 2;
                 }
-                this.coordinates = new Coordinates(coordinates.getLatitude() + 0, coordinates.getLongitude() + 10, height + 2);
+                this.coordinates = new Coordinates(coordinates.getLatitude() + 0, coordinates.getLongitude() + 10, height);
                 msg = "Lets go find some points of interest!";
                 break;
             case "RAIN":
@@ -50,12 +52,11 @@ public class Helicopter extends Aircraft implements Flyable {
         }
 
         logger.addLine(String.format("%s#%s(%s): %s\n", classSimpleName, this.name, this.id, msg));
-        // System.out.println(classSimpleName + "#" + this.name + "(" + this.id + "): " + msg);
+        // System.out.println(String.format("%s#%s(%s): %s", classSimpleName, this.name, this.id, msg));
         
         if (this.coordinates.getHeight() <= 0) {
-            // System.out.println(classSimpleName + "#" + this.name + "(" + this.id +"): " + msg);
-            // System.out.println(classSimpleName + "#" + this.name + "(" + this.id +"): Landing... Lat: " + coordinates.getLatitude() + " Long: " + coordinates.getLongitude() + " Height: " + coordinates.getHeight());
-            // System.out.println("Tower says: " + classSimpleName + "#" + this.name + "(" + this.id +") unregistered from weather tower." );
+            // System.out.println(String.format("%s#%s(%s): Landing... (%s)", classSimpleName, this.name, this.id, coordinates.toString()));
+            // System.out.println(String.format("Tower says: %s#%s(%s) unregistered from weather tower.", classSimpleName, this.name, this.id));
             logger.addLine(String.format("%s#%s(%s): Landing... (%s)\n", classSimpleName, this.name, this.id, coordinates.toString()));
             logger.addLine(String.format("Tower says: %s#%s(%s) unregistered from weather tower.\n", classSimpleName, this.name, this.id));
             this.weatherTower.unregister(this);
@@ -67,6 +68,6 @@ public class Helicopter extends Aircraft implements Flyable {
         this.weatherTower = weatherTower;
         this.weatherTower.register(this);
         logger.addLine(String.format("Tower says: %s#%s(%s) registered to weather tower.\n", classSimpleName, this.name, this.id));
-        // System.out.println("Tower says: " + classSimpleName + "#" + this.name + "(" + this.id +") registered to weather tower.");
+        // System.out.println(String.format("Tower says: %s#%s(%s) registered to weather tower.", classSimpleName, this.name, this.id));
     }
 }
