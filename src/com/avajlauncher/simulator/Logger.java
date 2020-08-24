@@ -5,7 +5,7 @@ import java.io.IOException;
 
 public class Logger {
 
-    public static String content = "";
+    private static String content = "";
     private static Logger logger = new Logger();
 
     private Logger() {
@@ -26,7 +26,7 @@ public class Logger {
             writer.write(content);
             writer.close();
         } catch (IOException e) {
-            System.out.println("Error creating file simulation.txt, quitting...");
+            System.out.println("Error creating file 'simulation.txt', quitting...");
             System.out.println(e);
             System.exit(1);
         }
